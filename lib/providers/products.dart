@@ -16,7 +16,7 @@ class Products with ChangeNotifier {
       title: 'Trousers',
       description: 'A nice pair of trousers.',
       price: 59.99,
-      imageUrl: 
+      imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
     ),
     Product(
@@ -37,14 +37,38 @@ class Products with ChangeNotifier {
     ),
   ];
 
+  // var _showFavoritesOnly = false;
+
   List<Product> get items {
+    // if (_showFavoritesOnly) {
+    //   return _items.where((element) => element.isFavorite).toList();
+    // }
     return [..._items];
   }
-Product findById(String id){
-  return _items.firstWhere((p) => p.id == id);
-}
-  addProduct(Product value) {
-    _items.add(value);
-    notifyListeners();
+List<Product> get favoriteItems {
+    // if (_showFavoritesOnly) {
+    //   return _items.where((element) => element.isFavorite).toList();
+    // }
+    return _items.where((element) => element.isFavorite).toList();
   }
+
+  Product findById(String id) {
+    return _items.firstWhere((p) => p.id == id);
+  }
+
+  // void showFavoritesOnly() {
+  //   _showFavoritesOnly = true;
+  //   notifyListeners();
+  // }
+  // void showAll() {
+  //   _showFavoritesOnly = false;
+  //   notifyListeners();
+
+  // }
+
+
+  // addProduct(Product value) {
+  //   _items.add(value);
+  //   notifyListeners();
+  // }
 }
