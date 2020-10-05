@@ -47,15 +47,15 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             ],
           ),
           Consumer<Cart>(
-            builder: (context, cart, ch) => Badge(
-              child: ch,
-              value: cart.itemCount.toString(),
-            ),
-            child: IconButton(
+            builder: (context, cart, _) => Badge(
+              child: IconButton(
                 icon: Icon(Icons.shopping_cart),
                 onPressed: () {
                   Navigator.pushNamed(context, CartScreen.roteName);
                 }),
+              value: cart.itemCount.toString(),
+            ),
+          
           ),
         ],
       ),

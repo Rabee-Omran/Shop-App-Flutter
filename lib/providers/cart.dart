@@ -22,6 +22,7 @@ class Cart with ChangeNotifier {
 
   int get itemCount {
     return _items == null ? 0 : _items.length;
+   
   }
 
   double get totalAmount {
@@ -64,4 +65,26 @@ class Cart with ChangeNotifier {
     _items = {};
     notifyListeners();
   }
+
+  void removeSingleItem(String id) {
+    if (!_items.containsKey(id)) {
+      return;
+    }
+    if (_items[id].quantity > 1) {
+      _items.update(
+        id,
+        (value) => CartItem(
+            id: value.id,
+            title: value.title,
+            quantity: value.quantity - 1,
+            price: value.price),
+      );
+    } else {
+      _items.remove(id);
+    }
+ notifyListeners();
+  }
+
+
+
 }

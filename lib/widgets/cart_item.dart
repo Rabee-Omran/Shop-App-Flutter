@@ -28,6 +28,28 @@ class CartItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
       ),
       direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) {
+        return showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+                  title: Text('Are You Sure ?'),
+                  content: Text('Do you to remove item from cart ?'),
+                  actions: [
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.pop(ctx, false);
+                      },
+                      child: Text('No'),
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.pop(ctx, true);
+                      },
+                      child: Text('Yes'),
+                    )
+                  ],
+                ));
+      },
       onDismissed: (direction) {
         // print(id);
         // print(productId);
