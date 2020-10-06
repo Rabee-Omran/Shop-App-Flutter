@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_ro/providers/product.dart';
 import 'package:shop_ro/providers/products.dart';
+import 'package:shop_ro/screens/edit_product_screen.dart';
 import 'package:shop_ro/widgets/app_drawer.dart';
 import 'package:shop_ro/widgets/user_product_item.dart';
 
@@ -13,7 +13,13 @@ class UserProductsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Products'),
-        actions: [IconButton(icon: Icon(Icons.add), onPressed: () {})],
+        actions: [
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.pushNamed(context, EditProductScreen.routeName);
+              })
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),
@@ -23,9 +29,10 @@ class UserProductsScreen extends StatelessWidget {
               return Column(
                 children: [
                   UserProductItem(
-                      productsData.items[i].title, productsData.items[i].imageUrl),
-              
-              Divider()
+                      productsData.items[i].id,
+                      productsData.items[i].title,
+                      productsData.items[i].imageUrl),
+                  Divider()
                 ],
               );
             }),
